@@ -5,13 +5,19 @@ const initialState = {
   value: [
     {
       id: 1,
-      todo: "AAAAAA",
+      todo: "ごはん",
       complete: false,
       auth: false,
     },
     {
       id: 2,
-      todo: "BBBBBBB",
+      todo: "おやつ",
+      complete: false,
+      auth: false,
+    },
+    {
+      id: 3,
+      todo: "さんぽ",
       complete: false,
       auth: false,
     },
@@ -47,12 +53,14 @@ export const todoSlice = createSlice({
             id: todos.id,
             todo: todos.todo,
             complete: true,
+            auth: todos.auth,
           }
         else {
           return {
             id: todos.id,
             todo: todos.todo,
             complete: todos.complete,
+            auth: todos.auth,
           }
         }
       })
