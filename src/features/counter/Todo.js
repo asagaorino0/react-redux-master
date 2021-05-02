@@ -4,9 +4,8 @@ import { selectTodo, add_todo, all_delete, del_todo, DONE_LIST, check_list } fro
 import Checkbox from '@material-ui/core/Checkbox';
 import styles from './Counter.module.css';
 // import { Button } from 'react-bootstrap'
-import DeleteIcon from '@material-ui/icons/Delete';
-import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
+// import DeleteIcon from '@material-ui/icons/Delete';
+// import IconButton from '@material-ui/core/IconButton';
 export function Todo() {
   const todos = useSelector(selectTodo);
   const dispatch = useDispatch();
@@ -63,15 +62,13 @@ export function Todo() {
                 {item.todo}
 
                 {item.auth &&
-                  <IconButton aria-label="delete" >
-                    <DeleteIcon onClick={() => delClick(item.todo)} />
-                  </IconButton>
+                  <button
+                    className={styles.button}
+                    aria-label="Decrement value" onClick={() => delClick(item.todo)} >-</button>
+                  // <IconButton aria-label="delete" >
+                  //   <DeleteIcon onClick={() => delClick(item.todo)} />
+                  // </IconButton>
                 }
-
-
-
-
-
               </div>
             )
           })
