@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectTodo, add_todo, all_delete, del_todo, DONE_LIST, check_list } from './todoSlice';
-import Checkbox from '@material-ui/core/Checkbox';
+// import Checkbox from '@material-ui/core/Checkbox';
 import styles from './Counter.module.css';
 // import { Button } from 'react-bootstrap'
 // import DeleteIcon from '@material-ui/icons/Delete';
@@ -21,9 +21,7 @@ export function Todo() {
             todos.id
           )
         })
-    console.log('includes:', add.includes(todos.length + 1), todos.length + 2)
     const max = Math.max(...add)
-    console.log('max', add, max)//確認用
     if ((add.includes(todos.length + 1)) === true)
       dispatch(add_todo({
         id: max + 1, todo: event, complete, auth
@@ -39,7 +37,6 @@ export function Todo() {
   const delClick = (todo) => {
     dispatch(del_todo({ todos, todo }))
     // dispatch(del_todo({ todos }))---これは機能しなかった
-    console.log(del)
   };
   const done = (id, complete) => {
     dispatch(DONE_LIST({ todos, id }))
@@ -70,10 +67,14 @@ export function Todo() {
           todos.map(item => {
             return (
               <div key={item.id} >
-                <Checkbox
+                {/* <Checkbox
                   onChange={() => check(item.id)}
                   color="primary"
                   inputProps={{ 'aria-label': 'primary checkbox' }}
+                /> */}
+                <input type="checkbox"
+                  // id={data.id}
+                  onChange={() => check(item.id)}
                 />
                 {/* {item.id}: */}
                 {item.todo}

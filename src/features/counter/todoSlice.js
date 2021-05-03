@@ -34,19 +34,14 @@ export const todoSlice = createSlice({
     },
     del_todo: (state, action) => {
       const del = action.payload
-      console.log('del.todo', del.todo)//確認用
-      console.log('?', del)//確認用
       const todos = del.todos.filter(todos => {
         return todos.todo !== del.todo;
       });
       state.value = todos
-      console.log('statevalue', state.value)//確認用
     },
     DONE_LIST: (state, action) => {
       const done = action.payload
-      console.log('done', done, done.id)
       const todos = done.todos.map(todos => {
-        console.log('todoid', todos.id)//確認用
         if (todos.id === done.id)
           return {
             id: todos.id,
@@ -64,13 +59,10 @@ export const todoSlice = createSlice({
         }
       })
       state.value = todos
-      console.log('statevalue', state.value)//確認用
     },
     check_list: (state, action) => {
       const check = action.payload
-      console.log('check', check, check.id)
       const todos = check.todos.map(todos => {
-        console.log('todoid', todos.id)
         if (todos.id === check.id)
           return {
             id: todos.id,
@@ -88,11 +80,9 @@ export const todoSlice = createSlice({
         }
       })
       state.value = todos
-      console.log('statevalue', state.value)//確認用
     },
     all_delete: (state) => {
       state.value = [];
-      console.log('statevalue', state.value)
     },
   }
 });
