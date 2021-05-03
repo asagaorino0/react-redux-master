@@ -14,8 +14,25 @@ export function Todo() {
   const [del, setDel] = useState('');
   const [auth, setAuth] = React.useState(false);
   const addClick = () => {
-    dispatch(add_todo({ id: todos.length + 1, todo: event, complete, auth }))
-  }
+    const add =
+      todos
+        .map(todos => {
+          return (
+            todos.id
+          )
+        })
+    console.log('includes:', add.includes(todos.length + 1), todos.length + 2)
+    const max = Math.max(...add)
+    console.log('max', add, max)//確認用
+    if ((add.includes(todos.length + 1)) === true)
+      dispatch(add_todo({
+        id: max + 1, todo: event, complete, auth
+      }))
+    else
+      dispatch(add_todo({
+        id: todos.length + 1, todo: event, complete, auth
+      }))
+  };
   const allDelete = () => {
     dispatch(all_delete());
   };
@@ -50,6 +67,33 @@ export function Todo() {
         </button>
       <ul>
         {
+          todos.map(item => {
+            return (
+              <div key={item.id} >
+                <Checkbox
+                  onChange={() => check(item.id)}
+                  color="primary"
+                  inputProps={{ 'aria-label': 'primary checkbox' }}
+                />
+                {/* {item.id}: */}
+                {item.todo}
+
+                {item.auth &&
+                  <button
+                    className={styles.button}
+                    aria-label="Decrement value" onClick={() => delClick(item.todo)} >-</button>
+                  // <IconButton aria-label="delete" >
+                  //   <DeleteIcon onClick={() => delClick(item.todo)} />
+                  // </IconButton>
+                }
+              </div>
+            )
+          })
+        }
+        <br />
+        <br />
+        ---違う仕組みの実装---
+                {
           todos
             .filter((todo) => todo.complete === false)
             .map(item => {
