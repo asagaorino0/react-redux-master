@@ -24,7 +24,7 @@ export function Todo() {
     // dispatch(del_todo({ todos }))---これは機能しなかった
     console.log(del)
   };
-  const done = (id) => {
+  const done = (id, complete) => {
     dispatch(DONE_LIST({ todos, id }))
   };
   const check = (id) => {
@@ -50,33 +50,6 @@ export function Todo() {
         </button>
       <ul>
         {
-          todos.map(item => {
-            return (
-              <div key={item.id} >
-                <Checkbox
-                  onChange={() => check(item.id)}
-                  color="primary"
-                  inputProps={{ 'aria-label': 'primary checkbox' }}
-                />
-                {/* {item.id}: */}
-                {item.todo}
-
-                {item.auth &&
-                  <button
-                    className={styles.button}
-                    aria-label="Decrement value" onClick={() => delClick(item.todo)} >-</button>
-                  // <IconButton aria-label="delete" >
-                  //   <DeleteIcon onClick={() => delClick(item.todo)} />
-                  // </IconButton>
-                }
-              </div>
-            )
-          })
-        }
-        <br />
-        <br />
-        ---違う仕組みの実装---
-                {
           todos
             .filter((todo) => todo.complete === false)
             .map(item => {
@@ -84,7 +57,7 @@ export function Todo() {
                 <div key={item.id}>{item.id}:{item.todo}
                   <button
                     className={styles.button}
-                    aria-label="Decrement value" onClick={() => done(item.id)}>-</button>
+                    aria-label="Decrement value" onClick={() => done(item.id, item.complete)}>-</button>
                 </div>
               )
             })

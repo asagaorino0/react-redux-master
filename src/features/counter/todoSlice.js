@@ -30,7 +30,6 @@ export const todoSlice = createSlice({
   reducers: {
     add_todo: (state, action) => {
       const event = action.payload
-      console.log(event.id);//確認用
       state.value.push({ ...event })
     },
     del_todo: (state, action) => {
@@ -47,7 +46,7 @@ export const todoSlice = createSlice({
       const done = action.payload
       console.log('done', done, done.id)
       const todos = done.todos.map(todos => {
-        console.log('todoid', todos.id)
+        console.log('todoid', todos.id)//確認用
         if (todos.id === done.id)
           return {
             id: todos.id,
