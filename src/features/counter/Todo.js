@@ -10,9 +10,8 @@ export function Todo() {
   const todos = useSelector(selectTodo);
   const dispatch = useDispatch();
   const [event, setEvent] = useState('');
-  const [complete, setComplete] = useState(false);
-  const [del, setDel] = useState('');
-  const [auth, setAuth] = React.useState(false);
+  const [complete] = useState(false);
+  const [auth] = React.useState(false);
   const addClick = () => {
     const add =
       todos

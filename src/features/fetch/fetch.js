@@ -7,7 +7,9 @@ export function Fetch() {
     const dispatch = useDispatch();
     useEffect(() => {
         fetchUserData();
-    }, []);
+    },
+        // eslint-disable-next-line 
+        []);
 
     const fetchUserData = async () => {
         await dispatch(fetchData());

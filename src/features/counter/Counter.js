@@ -45,7 +45,7 @@ export function Counter() {
           0
         </button>
       </div>
-      {/* <div className={styles.row}>
+      <div className={styles.row}>
         <input
           className={styles.textbox}
           aria-label="Set increment amount"
@@ -70,7 +70,7 @@ export function Counter() {
         >
           Add If Odd
         </button>
-      </div> */}
+      </div>
     </div>
   );
 }

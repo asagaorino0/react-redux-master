@@ -1,9 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
 import { Todo } from './features/counter/Todo';
 import { Fetch } from './features/fetch/fetch';
 import { GetTodo } from './features/fetch/getTodo';
-import { Counter } from './features/counter/Counter';
+// import { Counter } from './features/counter/Counter';
 import './App.css';
 
 function App() {

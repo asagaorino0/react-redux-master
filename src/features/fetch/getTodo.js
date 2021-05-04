@@ -6,7 +6,9 @@ export function GetTodo() {
     const dispatch = useDispatch();
     useEffect(() => {
         getTodoUserData();
-    }, []);
+    },
+        // eslint-disable-next-line 
+        []);
 
     const getTodoUserData = async () => {
         await dispatch(getTodoData());
