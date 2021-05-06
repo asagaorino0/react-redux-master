@@ -29,6 +29,7 @@ export function Todo() {
       dispatch(add_todo({
         id: todos.length + 1, todo: event, complete, auth
       }))
+    setEvent("")
   };
   const allDelete = () => {
     dispatch(all_delete());
@@ -48,7 +49,12 @@ export function Todo() {
     <div>
       <span className={styles.value}>Todo List</span>
       <br />
-      <input type="text" onChange={e => setEvent(e.target.value)} />
+      <input
+        type="text"
+        autoFocus={true}
+        onChange={e => setEvent(e.target.value)}
+        value={event}
+      />
       <button
         aria-label="add_todo"
         onClick={addClick}
