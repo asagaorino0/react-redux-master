@@ -10,6 +10,7 @@ export function Todo() {
   const todos = useSelector(selectTodo);
   const dispatch = useDispatch();
   const [event, setEvent] = useState('');
+  const [limit, setLimit] = useState('');
   const [complete] = useState(false);
   const [auth] = React.useState(false);
   const addClick = () => {
@@ -23,13 +24,14 @@ export function Todo() {
     const max = Math.max(...add)
     if ((add.includes(todos.length + 1)) === true)
       dispatch(add_todo({
-        id: max + 1, todo: event, complete, auth
+        id: max + 1, todo: event, limit, complete, auth
       }))
     else
       dispatch(add_todo({
-        id: todos.length + 1, todo: event, complete, auth
+        id: todos.length + 1, todo: event, limit, complete, auth
       }))
     setEvent("")
+    setLimit("")
   };
   const allDelete = () => {
     dispatch(all_delete());
@@ -47,14 +49,29 @@ export function Todo() {
 
   return (
     <div>
-      <span className={styles.value}>Todo List</span>
-      <br />
-      <input
-        type="text"
-        autoFocus={true}
-        onChange={e => setEvent(e.target.value)}
-        value={event}
-      />
+      <div>
+        <span className={styles.value}>List</span>
+        <br />
+        {/* <label >event : </label> */}
+        <input
+          type="text"
+          name="event"
+          value="mm_dd"
+          autoFocus={true}
+          onChange={e => setEvent(e.target.value)}
+          value={event}
+        />
+        <br />
+        {/* <label >limit　: </label> */}
+        <input
+          type="date"
+          name="limitt"
+          // label="event"
+          // autoFocus={true}
+          onChange={e => setLimit(e.target.value)}
+          value={limit}
+        />
+      </div>
       <button
         aria-label="add_todo"
         onClick={addClick}
@@ -83,7 +100,7 @@ export function Todo() {
                 />
                 {/* {item.id}: */}
                 {item.todo}
-
+                :{item.limit}
                 {item.auth &&
                   <button
                     className={styles.button}
@@ -98,7 +115,7 @@ export function Todo() {
         }
         <br />
         <br />
-        ---違う仕組みの実装---
+        {/* ---違う仕組みの実装---
                 {
           todos
             .filter((todo) => todo.complete === false)
@@ -111,7 +128,7 @@ export function Todo() {
                 </div>
               )
             })
-        }
+        } */}
       </ul>
     </div >
   );
