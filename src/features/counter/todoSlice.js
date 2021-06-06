@@ -1,27 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  // value: [],
-  value: [
-    {
-      id: 1,
-      todo: "ごはん",
-      complete: false,
-      auth: false,
-    },
-    {
-      id: 2,
-      todo: "おやつ",
-      complete: false,
-      auth: false,
-    },
-    {
-      id: 3,
-      todo: "さんぽ",
-      complete: false,
-      auth: false,
-    },
-  ],
+  value: [],
 };
 
 export const todoSlice = createSlice({
@@ -46,6 +26,7 @@ export const todoSlice = createSlice({
           return {
             id: todos.id,
             todo: todos.todo,
+            naiyou: todos.naiyou,
             complete: true,
             auth: todos.auth,
           }
@@ -53,6 +34,7 @@ export const todoSlice = createSlice({
           return {
             id: todos.id,
             todo: todos.todo,
+            naiyou: todos.naiyou,
             complete: todos.complete,
             auth: todos.auth,
           }
@@ -67,6 +49,7 @@ export const todoSlice = createSlice({
           return {
             id: todos.id,
             todo: todos.todo,
+            naiyou: todos.naiyou,
             complete: todos.complete,
             auth: true,
           }
@@ -74,6 +57,7 @@ export const todoSlice = createSlice({
           return {
             id: todos.id,
             todo: todos.todo,
+            naiyou: todos.naiyou,
             complete: todos.complete,
             auth: todos.auth,
           }

@@ -10,6 +10,7 @@ export function Todo() {
   const todos = useSelector(selectTodo);
   const dispatch = useDispatch();
   const [event, setEvent] = useState('');
+  const [naiyou, setNaiyou] = useState('');
   const [limit, setLimit] = useState('');
   const [complete] = useState(false);
   const [auth] = React.useState(false);
@@ -24,13 +25,14 @@ export function Todo() {
     const max = Math.max(...add)
     if ((add.includes(todos.length + 1)) === true)
       dispatch(add_todo({
-        id: max + 1, todo: event, limit, complete, auth
+        id: max + 1, todo: event, naiyou, limit, complete, auth
       }))
     else
       dispatch(add_todo({
-        id: todos.length + 1, todo: event, limit, complete, auth
+        id: todos.length + 1, todo: event, naiyou, limit, complete, auth
       }))
     setEvent("")
+    setNaiyou("")
     setLimit("")
   };
   const allDelete = () => {
@@ -41,10 +43,10 @@ export function Todo() {
     // dispatch(del_todo({ todos }))---これは機能しなかった
   };
   const done = (id, complete) => {
-    dispatch(DONE_LIST({ todos, id }))
+    dispatch(DONE_LIST({ todos, id, naiyou }))
   };
   const check = (id) => {
-    dispatch(check_list({ todos, id, auth }))
+    dispatch(check_list({ todos, id, naiyou, auth }))
   };
 
   return (
@@ -52,38 +54,47 @@ export function Todo() {
       <div>
         <span className={styles.value}>List</span>
         <br />
-        {/* <label >event : </label> */}
+        <label > 項目 </label>
         <input
           type="text"
           name="event"
-          value="mm_dd"
+          value=""
           autoFocus={true}
           onChange={e => setEvent(e.target.value)}
           value={event}
         />
         <br />
-        {/* <label >limit　: </label> */}
+        <label > 内容 </label>
         <input
+          type="text"
+          name="naiyou"
+          value=""
+          autoFocus={true}
+          onChange={e => setNaiyou(e.target.value)}
+          value={naiyou}
+        />
+        {/* <label >limit　: </label> */}
+        {/* <input
           type="date"
           name="limitt"
           // label="event"
           // autoFocus={true}
           onChange={e => setLimit(e.target.value)}
           value={limit}
-        />
+        /> */}
       </div>
       <button
-        aria-label="add_todo"
+        aria-label="input"
         onClick={addClick}
       >
-        add_todo
+        input
         </button>
-      <button
+      {/* <button
         aria-label="all_delete"
         onClick={allDelete}
       >
         all_delete
-        </button>
+        </button> */}
       <ul>
         {
           todos.map(item => {
@@ -100,7 +111,7 @@ export function Todo() {
                 />
                 {/* {item.id}: */}
                 {item.todo}
-                :{item.limit}
+                :{item.naiyou}
                 {item.auth &&
                   <button
                     className={styles.button}
@@ -113,10 +124,8 @@ export function Todo() {
             )
           })
         }
-        <br />
-        <br />
-        {/* ---違う仕組みの実装---
-                {
+
+        {/*   {
           todos
             .filter((todo) => todo.complete === false)
             .map(item => {
